@@ -84,8 +84,14 @@ class RegexBuilder {
     return new RegExp(this.preRegex, flag);
   }
 
-  until(input, untilEnd = false) {
-    this.preRegex += `(?=${ decontaminateInput(input) }${ untilEnd ? "|$" : "" })`;
+  until(input, andUntilEnd = false) {
+    this.preRegex += `(?=${ decontaminateInput(input) }${ andUntilEnd ? "|$" : "" })`;
+    
+    return this;
+  }
+
+  untilEnd() {
+    this.preRegex += `$`;
     
     return this;
   }
